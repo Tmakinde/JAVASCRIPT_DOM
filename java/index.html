@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Laurel || Register</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/css/all.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<style>
+  .form-signup {
+    max-width: 600px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    background-color:whitesmoke;
+  }
+  #container{
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: blue;
+  }
+  #animate{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+  }
+  #mouse{
+    margin-top: 50px;
+    width: 600px;
+    padding-top: 10px;
+    height: 50px;
+    background-color: red;
+  }
+</style>
+
+<body onload="cookiees2()">
+  <div class="container p-3  mx-auto">
+    <form class="form-signup p-3 mx-auto" id = 'form'>
+      <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
+      <label for="inputFirstName" class="P-0">First Name</label>
+      <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" required autofocus value ="tolu">
+      <label for="inputLastName" class=" mt-4">Last Name</label>
+      <input type="text" id="inputLastName" class="form-control " placeholder="Last Name" required autofocus value ="tolu">
+      <label for="inputEmail" class="mt-4">Email</label>
+      <input type="email" class="form-control" name="" id="inputEmail" aria-describedby="emailHelpId"
+        placeholder="Email" required autofocus value ="tolu">
+      <label for="inputPassword" class="mt-4">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required value ="tolu">
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <label class="label">Gender</label>
+      <div class="">
+        <label class="">Male
+          <input type="radio" checked="checked" name="gender">
+        </label>
+        <label class="">Female
+          <input type="radio" name="gender">
+        </label>
+      </div>
+        
+       <button class="btn btn-lg btn-success btn-block" type="submit" onclick ='getValue()'>Submit</button>
+       <h6 class ='text-muted'> to display value of form</h6>
+      
+       
+      <p class="mt-5 mb-3 text-muted">Laurel &copy; 2020</p>
+      
+    </form>
+    <button class="btn btn-lg btn-info btn-block" onclick ="getValue()"">try it</button>
+    <p id = 'demo'></p>
+    <div id ="container">
+      <div id ='animate'></div>
+    </div>
+    <button class="btn btn-lg btn-info btn-block" onclick ="myAnimate()">Try the animation</button>
+    <br>
+    <h6 class="text-success" id ='cookie2'>Check if cookie is enable on your pc, when onclick is used to trigger function</h6>
+    <button class="btn btn-lg btn-info btn-block" onclick="cookiees1()" id ='cookie1'>Check if cookie is enable on your pc, when onclick is used to trigger function</button>
+
+    <h6 id = 'mouse' onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">Do not touch this</h6>
+    <br>
+    <h6 id = 'mouse' onmousedown="mouseDown(this)" onmouseup="mouseUp(this)">Click</h6>
+    <i>using addEventListener</i><br>
+    <button class ="btn btn-info" id = 'event'>Event listener</button>
+    <button class ="btn btn-info" id = 'event2'>Event listener 2</button>
+  </div>
+  <script>
+    function getValue(){
+      
+      // get form
+      var i = document.forms['form' ]// form is the id of the form;
+      var text = '';
+      var j;
+      var color;
+      for(j = 0; j<i.length; j++){
+        text += i.elements[j].value + '<br>';
+        
+
+      }
+     // document.getElementById('demo).style.color = red;
+      document.getElementById('demo').innerHTML = text;
+    }
+
+    // animation
+    // the position of the container should be relative
+    // the position of the animation should be absolute
+
+    function myAnimate(){
+      var animation = document.getElementById('animate');
+      var i = setInterval(frame, 10); // set time interval for 3 sec
+      var pos = 0;
+      function frame(){
+        if(pos == 450){
+        clearInterval(i);
+        }else{
+        pos++
+        animation.style.top = pos + 'px';
+        animation.style.left = pos + 'px';
+      }
+      }
+      
+    }
+
+    /*
+    * to check if cookie is enable , use navigator.cookieEnabled
+    * if navigator.cookieEnabled == true, cookie is enable
+    * u can check for browser information like cookie using the onload and unonload function, by placing them in the function
+    */
+    // check for cookie if it is enable
+    // using onlick
+    function cookiees1(){
+      var text ='';
+      if(navigator.cookieEnabled == true){
+        text = 'cookie is enable';
+        document.getElementById('cookie1').innerHTML = text;
+
+      }else{
+        text = 'cookie is unenable';
+        document.getElementById('cookie1').innerHTML = text;
+      }
+    }
+    // using onload
+    function cookiees2(){
+      var text ='';
+      if(navigator.cookieEnabled == true){
+        text = 'cookie is enable when onload placed in the body tag is used to trigger function';
+        document.getElementById('cookie2').innerHTML = text;
+
+      }else{
+        text = 'cookie is unenable when onload placed in the body tag is used to trigger functio';
+        document.getElementById('cookie2').innerHTML = text;
+      }
+    }
+
+    /*
+    * onmouseover 
+    *onmouseout
+    */
+    function mouseOver(obj){
+      obj.innerHTML = 'thank you';
+    }
+    function mouseOut(obj){
+      obj.innerHTML = 'Try to mouseover me and see what happens';
+    }
+
+    /*
+    * onmousedown 
+    *onmouseup
+    */
+
+    function mouseDown(obj){
+      obj.innerHTML = 'Release me';
+    }
+    function mouseUp(obj){
+      obj.innerHTML = 'Thank you';
+    }
+
+    // using event listener
+    document.getElementById('event').addEventListener('click', function(){
+      alert ('Welcome!')
+    })
+    var x = document.getElementById('event2');
+    x.addEventListener('mouseover', function(){
+      document.getElementById('event2').innerHTML = 'Release me';
+    });
+    x.addEventListener('mouseout', function(){
+      document.getElementById('event2').innerHTML = 'Thank you';
+    });
+    x.addEventListener('click',function(){
+      alert ('Welcome!')
+    
+   })
+  </script>
+</body>
+
+</html>
